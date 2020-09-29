@@ -2,21 +2,19 @@
 
 > 사이드 프로젝트 팀 빌딩 플랫폼
 
-
 # 업데이트 내역
 
 - 0.0.1
   - 개발 환경 구축
 
-
 # 개발 팀원
-|  이름  | 담당  | 세부담당  | 기술스택 |
-| :----: | :---: | :-------: | :------: |
-| 김재훈 | 팀장  | Back-End  |  Django  |
-| 백동우 | 팀원  | Front-End |  React   |
-| 윤채원 | 팀원  | Front-End |  React   |
-| 이호진 | 팀원  | Front-End |  React   |
 
+|  이름  | 담당 | 세부담당  | 기술스택 |
+| :----: | :--: | :-------: | :------: |
+| 김재훈 | 팀장 | Back-End  |  Django  |
+| 백동우 | 팀원 | Front-End |  React   |
+| 윤채원 | 팀원 | Front-End |  React   |
+| 이호진 | 팀원 | Front-End |  React   |
 
 # 커밋 메시지 컨벤션
 
@@ -41,5 +39,6 @@ fix: 잘못된 리다이렉팅 수정
 docs: README.md 수정
 ```
 
-
 # 서버 저장소
+
+[바로가기](https://github.com/kimja7045/side-mate-server)
