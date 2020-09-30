@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
     }
     body {
         font-family: 맨발의청춘R !important;
+        background-color: #eaedf2;
     }
     a {
         text-decoration: none;
@@ -37,10 +38,10 @@ function App() {
         <>
           <NavBar />
           <Route exact path="/" component={Home} />
-          <Route exact path="/Board" component={Board} />
-          <Route exact path="/Mypage" component={Mypage} />
-          <Route exact path="/Login" component={Login} />
-          <Route exact path="/Register" component={Register} />
+          <Route exact path="/board" component={Board} />
+          <Route exact path="/mypage" component={Mypage} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
         </>
       </Switch>
     </BrowserRouter>
