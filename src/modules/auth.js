@@ -1,4 +1,6 @@
-import axios from "axios";
+import api from "../settings/api";
+import { createMessage } from "./messages";
+import { history } from "../index";
 // import {returnErrors} from './messages';
 
 // 액션 타입
@@ -31,7 +33,7 @@ export const loadUser = () => (dispatch, getState) => {
     config.headers["Authorization"] = `Token ${token}`;
   }
 
-  axios
+  api
     .get("/api/auth/user/", config)
     .then((res) => {
       dispatch({ type: USER_LOADED, payload: res.data });
@@ -52,7 +54,7 @@ export const login = (username, password) => (dispatch) => {
 
   const body = JSON.stringify({ username, password });
 
-  axios
+  api
     .post("/api/auth/login/", body, config)
     .then((res) => {
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
@@ -79,7 +81,7 @@ export const logout = () => (dispatch, getState) => {
     config.headers["Authorization"] = `Token ${token}`;
   }
 
-  axios
+  api
     .post("/api/auth/logout/", null, config)
     .then((res) => {
       dispatch({ type: LOGOUT_SUCCESS });
@@ -89,7 +91,7 @@ export const logout = () => (dispatch, getState) => {
     });
 };
 
-export const register = ({ username, password, email }) => (dispatch) => {
+export const register = ({ username, password, nickname }) => (dispatch) => {
   // Headers
   const config = {
     headers: {
@@ -97,14 +99,17 @@ export const register = ({ username, password, email }) => (dispatch) => {
     },
   };
 
-  const body = JSON.stringify({ username, email, password });
+  const body = JSON.stringify({ username, password, nickname });
 
-  axios
-    .post("/api/auth/register/", body, config)
+  api
+    .post("users/sign-up/", body, config)
     .then((res) => {
+      dispatch(createMessage({ register: "회원가입 완료" }));
       dispatch({ type: REGISTER_SUCCESS, payload: res.data });
+      history.push("/login");
     })
     .catch((err) => {
+      console.log(err.response);
       // dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({ type: REGISTER_FAIL });
     });
@@ -112,7 +117,6 @@ export const register = ({ username, password, email }) => (dispatch) => {
 
 // 초기 상태 선언
 const initialState = {
-  token: localStorage.getItem("token"),
   isAuthenticated: null,
   isLoading: false,
   user: null,
