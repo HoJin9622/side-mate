@@ -1,5 +1,6 @@
 import api from "../settings/api";
 import { createMessage } from "./messages";
+import { returnErrors } from "./errors";
 import { history } from "../index";
 // import {returnErrors} from './messages';
 
@@ -10,8 +11,6 @@ const AUTH_ERROR = "user/AUTH_ERROR";
 const LOGIN_SUCCESS = "user/LOGIN_SUCCESS";
 const LOGIN_FAIL = "user/LOGIN_FAIL";
 const LOGOUT_SUCCESS = "user/LOGOUT_SUCCESS";
-const REGISTER_SUCCESS = "user/REGISTER_SUCCESS";
-const REGISTER_FAIL = "user/REGISTER_FAIL";
 
 // 액션 객체
 export const loadUser = () => (dispatch, getState) => {
@@ -92,7 +91,6 @@ export const logout = () => (dispatch, getState) => {
 };
 
 export const register = ({ username, password, nickname }) => (dispatch) => {
-  // Headers
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -105,13 +103,11 @@ export const register = ({ username, password, nickname }) => (dispatch) => {
     .post("users/sign-up/", body, config)
     .then((res) => {
       dispatch(createMessage({ register: "회원가입 완료" }));
-      dispatch({ type: REGISTER_SUCCESS, payload: res.data });
       history.push("/login");
     })
     .catch((err) => {
       console.log(err.response);
-      // dispatch(returnErrors(err.response.data, err.response.status));
-      dispatch({ type: REGISTER_FAIL });
+      dispatch(returnErrors(err.response.data, err.response.status));
     });
 };
 
@@ -138,8 +134,6 @@ export default function (state = initialState, action) {
         user: action.payload,
       };
     case LOGIN_SUCCESS:
-    case REGISTER_SUCCESS:
-      localStorage.setItem("token", action.payload.token);
       return {
         ...state,
         ...action.payload,
@@ -149,8 +143,6 @@ export default function (state = initialState, action) {
     case AUTH_ERROR:
     case LOGIN_FAIL:
     case LOGOUT_SUCCESS:
-    case REGISTER_FAIL:
-      localStorage.removeItem("token");
       return {
         ...state,
         token: null,
