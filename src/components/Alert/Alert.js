@@ -36,6 +36,8 @@ export const Alert = () => {
       progress: undefined,
     };
     if (message.register) toast.success(`${message.register}`, alertOption);
+    if (message.notValidForm)
+      toast.error(`${message.notValidForm}`, alertOption);
   }, [message]);
 
   return (
