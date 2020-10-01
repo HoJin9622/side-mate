@@ -7,7 +7,6 @@ import { history } from "../index";
 const USER_LOADING = "user/USER_LOADING";
 const USER_LOADED = "user/USER_LOADED";
 const AUTH_ERROR = "user/AUTH_ERROR";
-const LOGIN_SUCCESS = "user/LOGIN_SUCCESS";
 const LOGIN_FAIL = "user/LOGIN_FAIL";
 const LOGOUT_SUCCESS = "user/LOGOUT_SUCCESS";
 
@@ -40,9 +39,24 @@ export const login = (username, password) => (dispatch) => {
   api
     .post("users/sign-in/", body, config)
     .then((res) => {
-      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+      dispatch({ type: USER_LOADING });
+
+      api
+        .get("/me/profile/", config)
+        .then((res) => {
+          dispatch({ type: USER_LOADED, payload: res.data });
+        })
+        .catch((err) => {
+          err.response?.data &&
+            dispatch(returnErrors(err.response.data, err.response.status));
+          dispatch({ type: AUTH_ERROR });
+        });
+
+      history.push("/");
     })
     .catch((err) => {
+      // 로그인 에러처리 서버 status code 수정 후 작업
+      console.log(err.response);
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({ type: LOGIN_FAIL });
     });
@@ -110,13 +124,6 @@ export default function (state = initialState, action) {
         isAuthenticated: true,
         isLoading: false,
         user: action.payload,
-      };
-    case LOGIN_SUCCESS:
-      return {
-        ...state,
-        ...action.payload,
-        isAuthenticated: true,
-        isLoading: false,
       };
     case AUTH_ERROR:
     case LOGIN_FAIL:
