@@ -3,7 +3,6 @@ import { createMessage } from "./messages";
 import { returnErrors } from "./errors";
 import { history } from "../index";
 
-// 액션 타입
 const USER_LOADING = "user/USER_LOADING";
 const USER_LOADED = "user/USER_LOADED";
 const AUTH_ERROR = "user/AUTH_ERROR";
@@ -16,7 +15,6 @@ const config = {
   },
 };
 
-// 액션 객체
 export const loadUser = () => (dispatch) => {
   dispatch({ type: USER_LOADING });
 
@@ -52,6 +50,7 @@ export const login = (username, password) => (dispatch) => {
           dispatch({ type: AUTH_ERROR });
         });
 
+      dispatch(createMessage({ login: "로그인 완료" }));
       history.push("/");
     })
     .catch((err) => {
@@ -64,12 +63,13 @@ export const login = (username, password) => (dispatch) => {
 
 export const logout = () => (dispatch) => {
   api
-    .post("/api/auth/logout/", null, config)
+    .get("/users/sign-out/", null, config)
     .then((res) => {
       dispatch({ type: LOGOUT_SUCCESS });
+      history.push("/");
     })
     .catch((err) => {
-      // dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch(returnErrors(err.response.data, err.response.status));
     });
 };
 
@@ -110,7 +110,6 @@ const initialState = {
   user: null,
 };
 
-// 리듀서 선언
 export default function (state = initialState, action) {
   switch (action.type) {
     case USER_LOADING:

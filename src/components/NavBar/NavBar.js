@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { BsJustify } from "react-icons/bs";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../modules/auth";
 
 const Container = styled.header`
   width: 100%;
@@ -68,7 +69,12 @@ const DrawerIcon = styled(BsJustify)`
 `;
 
 function NavBar() {
+  const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.auth);
+
+  const onLogout = () => {
+    dispatch(logout());
+  };
 
   return (
     <Container>
@@ -78,7 +84,7 @@ function NavBar() {
           <Title to="/board">메이트 찾기</Title>
           <Title to="/board">메이트 모집</Title>
           {isAuthenticated ? (
-            <Title to="/">로그아웃</Title>
+            <button onClick={onLogout}>로그아웃</button>
           ) : (
             <Title to="/login">로그인</Title>
           )}
