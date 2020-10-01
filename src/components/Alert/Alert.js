@@ -17,12 +17,7 @@ export const Alert = () => {
       draggable: true,
       progress: undefined,
     };
-    if (error.msg.name)
-      toast.error(`❌ Name : ${error.msg.name.join()}`, alertOption);
-    if (error.msg.email)
-      toast.error(`❌ Email : ${error.msg.email.join()}`, alertOption);
-    if (error.msg.message)
-      toast.error(`❌ Message : ${error.msg.message.join()}`, alertOption);
+    if (error.msg.msg) toast.error(error.msg.msg, alertOption);
   }, [error]);
 
   useEffect(() => {

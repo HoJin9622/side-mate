@@ -59,16 +59,15 @@ export const login = (username, password) => (dispatch) => {
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     })
     .catch((err) => {
-      console.log('error', err.response);
+      console.log("error", err.response);
 
       let result = !!err.response ? err.response.data : false;
-      if(!!result && result.code === 'NotLogin') {
-        console.log('login result',result);
+      if (!!result && result.code === "NotLogin") {
+        console.log("login result", result);
         dispatch(
-            createMessage({
-              notValidForm:
-              result.msg,
-            })
+          createMessage({
+            notValidForm: result.msg,
+          })
         );
         return;
       }
@@ -119,22 +118,9 @@ export const register = ({ username, password, nickname }) => (dispatch) => {
       history.push("/");
     })
     .catch((err) => {
-      console.log('error', err.response);
-
-      let result = !!err.response ? err.response.data : false;
-      if(!!result && result.code === 'NotRegister') {
-        console.log('register result',result);
-        dispatch(
-            createMessage({
-              notValidForm:
-              result.msg,
-            })
-        );
-        return;
-      }
-
-      // console.log(err.response);
-      // dispatch(returnErrors(err.response.data, err.response.status));
+      console.log(err.response.data);
+      err.response?.data &&
+        dispatch(returnErrors(err.response?.data, err.response?.status));
     });
 };
 
