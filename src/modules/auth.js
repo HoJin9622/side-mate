@@ -59,8 +59,10 @@ export const login = (username, password) => (dispatch) => {
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     })
     .catch((err) => {
-      let result = err.response.data;
-      if(result.code === 'NotLogin') {
+      console.log('error', err.response);
+
+      let result = !!err.response ? err.response.data : false;
+      if(!!result && result.code === 'NotLogin') {
         console.log('login result',result);
         dispatch(
             createMessage({
@@ -117,8 +119,10 @@ export const register = ({ username, password, nickname }) => (dispatch) => {
       history.push("/");
     })
     .catch((err) => {
-      let result = err.response.data;
-      if(result.code === 'NotRegister') {
+      console.log('error', err.response);
+
+      let result = !!err.response ? err.response.data : false;
+      if(!!result && result.code === 'NotRegister') {
         console.log('register result',result);
         dispatch(
             createMessage({
@@ -129,8 +133,8 @@ export const register = ({ username, password, nickname }) => (dispatch) => {
         return;
       }
 
-      console.log(err.response);
-      dispatch(returnErrors(err.response.data, err.response.status));
+      // console.log(err.response);
+      // dispatch(returnErrors(err.response.data, err.response.status));
     });
 };
 
