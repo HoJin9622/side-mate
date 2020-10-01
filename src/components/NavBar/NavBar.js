@@ -13,6 +13,7 @@ const Container = styled.header`
 const Content = styled.div`
   max-width: 1440px;
   height: 100%;
+  margin: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
