@@ -103,9 +103,21 @@ export const register = ({ username, password, nickname }) => (dispatch) => {
     .post("users/sign-up/", body, config)
     .then((res) => {
       dispatch(createMessage({ register: "회원가입 완료" }));
-      history.push("/login");
+      history.push("/");
     })
     .catch((err) => {
+      let result = err.response.data;
+      if(result.code === 'NotRegister') {
+        console.log('register result',result);
+        dispatch(
+            createMessage({
+              notValidForm:
+              result.msg,
+            })
+        );
+        return;
+      }
+
       console.log(err.response);
       dispatch(returnErrors(err.response.data, err.response.status));
     });
