@@ -22,12 +22,14 @@ export const loadUser = () => (dispatch) => {
   dispatch({ type: USER_LOADING });
 
   api
-    .get("/api/auth/user/", config)
+    .get("/me/profile/", config)
     .then((res) => {
+      console.log(res.data);
       dispatch({ type: USER_LOADED, payload: res.data });
     })
     .catch((err) => {
-      // dispatch(returnErrors(err.response.data, err.response.status));
+      err.response?.data &&
+        dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({ type: AUTH_ERROR });
     });
 };
@@ -41,7 +43,6 @@ export const login = (username, password) => (dispatch) => {
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     })
     .catch((err) => {
-      console.log("error", err.response);
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({ type: LOGIN_FAIL });
     });
@@ -65,12 +66,26 @@ export const register = ({ username, password, nickname }) => (dispatch) => {
     .post("users/sign-up/", body, config)
     .then((res) => {
       dispatch(createMessage({ register: "회원가입 완료" }));
+
+      dispatch({ type: USER_LOADING });
+
+      api
+        .get("/me/profile/", config)
+        .then((res) => {
+          dispatch({ type: USER_LOADED, payload: res.data });
+        })
+        .catch((err) => {
+          err.response?.data &&
+            dispatch(returnErrors(err.response.data, err.response.status));
+          dispatch({ type: AUTH_ERROR });
+        });
+
       history.push("/");
     })
     .catch((err) => {
       console.log(err.response);
       err.response?.data &&
-        dispatch(returnErrors(err.response?.data, err.response?.status));
+        dispatch(returnErrors(err.response.data, err.response.status));
     });
 };
 
@@ -108,7 +123,6 @@ export default function (state = initialState, action) {
     case LOGOUT_SUCCESS:
       return {
         ...state,
-        token: null,
         user: null,
         isAuthenticated: false,
         isLoading: false,
