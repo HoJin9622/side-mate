@@ -54,11 +54,22 @@ export const login = (username, password) => (dispatch) => {
   const body = JSON.stringify({ username, password });
 
   api
-    .post("/api/auth/login/", body, config)
+    .post("users/sign-in/", body, config)
     .then((res) => {
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     })
     .catch((err) => {
+      let result = err.response.data;
+      if(result.code === 'NotLogin') {
+        console.log('login result',result);
+        dispatch(
+            createMessage({
+              notValidForm:
+              result.msg,
+            })
+        );
+        return;
+      }
       // dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({ type: LOGIN_FAIL });
     });
