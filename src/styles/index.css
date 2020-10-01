@@ -1,17 +1,17 @@
 @font-face {
   font-family: "맨발의청춘B";
   src: local("맨발의청춘B"),
-    url("./fonts/210 맨발의청춘B.ttf") format("truetype");
+    url("./fonts/210맨발의청춘B.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "맨발의청춘R";
   src: local("맨발의청춘R"),
-    url("./fonts/210 맨발의청춘R.ttf") format("truetype");
+    url("./fonts/210맨발의청춘R.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "맨발의청춘L";
   src: local("맨발의청춘L"),
-    url("./fonts/210 맨발의청춘L.ttf") format("truetype");
+    url("./fonts/210맨발의청춘L.ttf") format("truetype");
 }
