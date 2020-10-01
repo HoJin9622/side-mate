@@ -53,6 +53,7 @@ export const logout = () => (dispatch) => {
   api
     .get("/users/sign-out/", null, config)
     .then((res) => {
+      dispatch(createMessage({ logout: "로그아웃 완료" }));
       dispatch({ type: LOGOUT_SUCCESS });
       history.push("/");
     })
