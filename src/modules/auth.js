@@ -37,19 +37,7 @@ export const login = (username, password) => (dispatch) => {
   api
     .post("users/sign-in/", body, config)
     .then((res) => {
-      dispatch({ type: USER_LOADING });
-
-      api
-        .get("/me/profile/", config)
-        .then((res) => {
-          dispatch({ type: USER_LOADED, payload: res.data });
-        })
-        .catch((err) => {
-          err.response?.data &&
-            dispatch(returnErrors(err.response.data, err.response.status));
-          dispatch({ type: AUTH_ERROR });
-        });
-
+      dispatch(loadUser());
       dispatch(createMessage({ login: "로그인 완료" }));
       history.push("/");
     })
@@ -80,20 +68,7 @@ export const register = ({ username, password, nickname }) => (dispatch) => {
     .post("users/sign-up/", body, config)
     .then((res) => {
       dispatch(createMessage({ register: "회원가입 완료" }));
-
-      dispatch({ type: USER_LOADING });
-
-      api
-        .get("/me/profile/", config)
-        .then((res) => {
-          dispatch({ type: USER_LOADED, payload: res.data });
-        })
-        .catch((err) => {
-          err.response?.data &&
-            dispatch(returnErrors(err.response.data, err.response.status));
-          dispatch({ type: AUTH_ERROR });
-        });
-
+      dispatch(loadUser());
       history.push("/");
     })
     .catch((err) => {
