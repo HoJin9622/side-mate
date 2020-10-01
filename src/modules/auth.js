@@ -2,7 +2,6 @@ import api from "../settings/api";
 import { createMessage } from "./messages";
 import { returnErrors } from "./errors";
 import { history } from "../index";
-// import {returnErrors} from './messages';
 
 // 액션 타입
 const USER_LOADING = "user/USER_LOADING";
@@ -12,25 +11,15 @@ const LOGIN_SUCCESS = "user/LOGIN_SUCCESS";
 const LOGIN_FAIL = "user/LOGIN_FAIL";
 const LOGOUT_SUCCESS = "user/LOGOUT_SUCCESS";
 
+const config = {
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
+
 // 액션 객체
-export const loadUser = () => (dispatch, getState) => {
-  // User Loading
+export const loadUser = () => (dispatch) => {
   dispatch({ type: USER_LOADING });
-
-  // Get token from state
-  const token = getState().auth.tokenl;
-
-  // Headers
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
-  // If token, add to headers config
-  if (token) {
-    config.headers["Authorization"] = `Token ${token}`;
-  }
 
   api
     .get("/api/auth/user/", config)
@@ -44,13 +33,6 @@ export const loadUser = () => (dispatch, getState) => {
 };
 
 export const login = (username, password) => (dispatch) => {
-  // Headers
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
   const body = JSON.stringify({ username, password });
 
   api
@@ -60,38 +42,12 @@ export const login = (username, password) => (dispatch) => {
     })
     .catch((err) => {
       console.log("error", err.response);
-
-      let result = !!err.response ? err.response.data : false;
-      if (!!result && result.code === "NotLogin") {
-        console.log("login result", result);
-        dispatch(
-          createMessage({
-            notValidForm: result.msg,
-          })
-        );
-        return;
-      }
-      // dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({ type: LOGIN_FAIL });
     });
 };
 
-export const logout = () => (dispatch, getState) => {
-  // Get token from state
-  const token = getState().auth.token;
-
-  // Headers
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
-  // If token, add to headers config
-  if (token) {
-    config.headers["Authorization"] = `Token ${token}`;
-  }
-
+export const logout = () => (dispatch) => {
   api
     .post("/api/auth/logout/", null, config)
     .then((res) => {
@@ -103,12 +59,6 @@ export const logout = () => (dispatch, getState) => {
 };
 
 export const register = ({ username, password, nickname }) => (dispatch) => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
   const body = JSON.stringify({ username, password, nickname });
 
   api
@@ -118,7 +68,7 @@ export const register = ({ username, password, nickname }) => (dispatch) => {
       history.push("/");
     })
     .catch((err) => {
-      console.log(err.response.data);
+      console.log(err.response);
       err.response?.data &&
         dispatch(returnErrors(err.response?.data, err.response?.status));
     });
