@@ -16,7 +16,6 @@ const LastFont = styled.div`
 const GridContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1.2fr);
-
     grid-column-gap: 20px;
     grid-row-gap: 40px;
     @media only screen and (max-width: 768px) {
@@ -52,37 +51,37 @@ function MainBoard(props) {
     const test = [
         {
             title: '나랑게임만들사람!!!!!!', //제목
-            info: '저랑같이만드실분있나요?', //상세내용
+            content: '저랑같이만드실분있나요?', //상세내용
             stack: 'figma, 코틀린', //기술
             date: '2020-13-41~2022-11-11', //기간
         },
         {
             title: '나랑웹 만들사람!!!!!!', //제목
-            info: '저랑같이만드실분있나요?', //상세내용
+            content: '저랑같이만드실분있나요?', //상세내용
             stack: 'css ,html 자바스크립트', //기술
             date: '2020-13-41~2022-11-11', //기간
         },
         {
             title: '나랑 건담 만들사람!!!!!!', //제목
-            info: '저랑같이만드실분있나요?', //상세내용
+            content: '저랑같이만드실분있나요?', //상세내용
             stack: 'css ,html, react', //기술
             date: '2020-13-41~2022-11-11', //기간
         },
         {
             title: '나랑 눈사람 만들사람!!!!!!', //제목
-            info: '저랑같이만드실분있나요?', //상세내용
+            content: '저랑같이만드실분있나요?', //상세내용
             stack: '엘사, 안나', //기술
             date: '2020-13-41~2022-11-11', //기간
         },
         {
             title: '나랑 눈사람 만들사람!!!!!!', //제목
-            info: '저랑같이만드실분있나요?', //상세내용
+            content: '저랑같이만드실분있나요?', //상세내용
             stack: '엘사, 안나', //기술
             date: '2020-13-41~2022-11-11', //기간
         },
         {
             title: '나랑 눈사람 만들사람!!!!!!', //제목
-            info: '저랑같이만드실분있나요?', //상세내용
+            content: '저랑같이만드실분있나요?', //상세내용
             stack: '엘사, 안나', //기술
             date: '2020-13-41~2022-11-11', //기간
         },

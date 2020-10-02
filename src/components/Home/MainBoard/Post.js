@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 const Image = styled.div`
-    height: 60%;
+    height: 65%;
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -11,27 +11,27 @@ const Image = styled.div`
 `;
 const Container = styled.div`
     width: 100%;
-    height: 20rem;
+    height: 24.5rem;
     background: #ffffff;
     border-radius: 15px;
     padding: 3% 3% 3% 3%;
 `;
-function Post(props) {
+function Post({ test }) {
     return (
         <Container>
             <Image bg="https://placeimg.com/300/300/anys" />
             <div
                 style={{
-                    padding: '10px 0 10px 0',
-                    height: '40%',
+                    padding: '15px 0 10px 10px',
+                    height: '35%',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
                 }}
             >
-                <p>{props.test.title}</p>
-                <p>{props.test.info}</p>
-                <p>{props.test.date}</p>
+                <p>{test.title}</p>
+                <p>{test.content}</p>
+                <p>{test.date}</p>
             </div>
         </Container>
     );
