@@ -7,7 +7,7 @@ const Container = styled.div`
     font-style: normal;
     font-weight: normal;
 `;
-const Content = styled.div`
+const Postbox = styled.div`
     height: 30rem;
     display: flex;
     justify-content: space-between;
@@ -50,14 +50,35 @@ const DateFont = styled.p`
     line-height: 20px;
 `;
 
+const Content = styled.div`
+    max-width: 1440px;
+    margin: auto;
+    justify-content: space-between;
+
+    @media only screen and (max-width: 1440px) {
+        padding: 0 6.875rem;
+    }
+
+    @media only screen and (max-width: 1024px) {
+        padding: 0 4.875rem;
+    }
+
+    @media only screen and (max-width: 768px) {
+        padding: 0 2.875rem;
+    }
+
+    @media only screen and (max-width: 375px) {
+        padding: 0 1rem;
+    }
+`;
 function Banner(props) {
     return (
         <Container>
-            <div style={{ maxWidth: '1440px', margin: 'auto' }}>
+            <Content>
                 {/*Most popular */}
                 <PopularIntro>Most popular</PopularIntro>
                 {/*박스 컨테이너*/}
-                <Content>
+                <Postbox>
                     <PopularImage bg="https://lh3.googleusercontent.com/proxy/vaWb1aqv-JSOkKnIr1AYjhrnloXfvnONc5irwgyBMFiBMgwy3O2xEAYMtDAzyeU9RCtxl-OFm0rmdcCgwonb65DBfdEJt7zyE4rWoYu8vvVy6OQ1A3r0prcKlN7wP3vyoh-YxJM0Z71neBwgqvV6SdWEdLDDOcJRV0T8HOM_tnlekgEzIk-tLrNakZZjyFHnMSDUpyN9HXxuhLi8MqMXP1XU8I-uIep9-DOJnlzvdo4Z58T2lp5hZq-bupNgmYmMzngJ5daysKd-WwAyteb3IYLw_TR6EmSt_alW1S8DpZvUOLSheKwH55SLWKqPsFdX148QziVasYRwqoIsmgbw1zjRxWiSQFLusfZSveSDJGMQtaIDBWaZ4Um2" />
                     <div
                         style={{
@@ -73,8 +94,8 @@ function Banner(props) {
                             <DateFont>기간 : 2020-12-23 ~ 2022-11-11</DateFont>
                         </PostInfo>
                     </div>
-                </Content>
-            </div>
+                </Postbox>
+            </Content>
         </Container>
     );
 }
