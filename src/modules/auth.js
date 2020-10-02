@@ -42,7 +42,6 @@ export const login = (username, password) => (dispatch) => {
       history.push("/");
     })
     .catch((err) => {
-      // 로그인 에러처리 서버 status code 수정 후 작업
       console.log(err.response);
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({ type: LOGIN_FAIL });
