@@ -1,7 +1,15 @@
-import { combineReducers } from "redux";
 import auth from "./auth";
-import messages from "./messages";
 import errors from "./errors";
+import messages from "./messages";
+import { combineReducers } from "redux";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+
+const persistConfig = {
+  key: "root",
+  storage: storage,
+  whitelist: ["auth"],
+};
 
 const rootReducer = combineReducers({
   auth,
@@ -9,4 +17,4 @@ const rootReducer = combineReducers({
   errors,
 });
 
-export default rootReducer;
+export default persistReducer(persistConfig, rootReducer);
