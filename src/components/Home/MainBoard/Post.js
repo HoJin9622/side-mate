@@ -1,14 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-const Image = styled.div`
-    height: 65%;
-    width: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    border-radius: 20px;
-    background-image: url(${(props) => props.bg});
-`;
+
 const Container = styled.div`
     width: 100%;
     height: 24.5rem;
@@ -19,7 +11,16 @@ const Container = styled.div`
 function Post({ test }) {
     return (
         <Container>
-            <Image bg="https://placeimg.com/300/300/anys" />
+            <img
+                alt="이미지"
+                src="https://placeimg.com/700/700/anys"
+                style={{
+                    backgroundRepeat: 'no-repeat',
+                    width: '100%',
+                    height: '65%',
+                    borderRadius: '15px',
+                }}
+            />
             <div
                 style={{
                     padding: '15px 0 10px 10px',

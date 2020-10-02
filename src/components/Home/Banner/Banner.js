@@ -16,15 +16,7 @@ const Postbox = styled.div`
     background: #ffffff;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `;
-const PopularImage = styled.div`
-    width: 50%;
-    height: 100%;
-    background-image: url(${(props) => props.bg});
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    border-radius: 20px;
-`;
+
 const PostInfo = styled.div`
     display: flex;
     height: 100%;
@@ -79,7 +71,15 @@ function Banner(props) {
                 <PopularIntro>Most popular</PopularIntro>
                 {/*박스 컨테이너*/}
                 <Postbox>
-                    <PopularImage bg="https://lh3.googleusercontent.com/proxy/vaWb1aqv-JSOkKnIr1AYjhrnloXfvnONc5irwgyBMFiBMgwy3O2xEAYMtDAzyeU9RCtxl-OFm0rmdcCgwonb65DBfdEJt7zyE4rWoYu8vvVy6OQ1A3r0prcKlN7wP3vyoh-YxJM0Z71neBwgqvV6SdWEdLDDOcJRV0T8HOM_tnlekgEzIk-tLrNakZZjyFHnMSDUpyN9HXxuhLi8MqMXP1XU8I-uIep9-DOJnlzvdo4Z58T2lp5hZq-bupNgmYmMzngJ5daysKd-WwAyteb3IYLw_TR6EmSt_alW1S8DpZvUOLSheKwH55SLWKqPsFdX148QziVasYRwqoIsmgbw1zjRxWiSQFLusfZSveSDJGMQtaIDBWaZ4Um2" />
+                    <img
+                        style={{
+                            width: '50%',
+                            height: '100%',
+                            borderRadius: '20px',
+                            backgroundRepeat: 'no-repeat',
+                        }}
+                        src="https://lh3.googleusercontent.com/proxy/vaWb1aqv-JSOkKnIr1AYjhrnloXfvnONc5irwgyBMFiBMgwy3O2xEAYMtDAzyeU9RCtxl-OFm0rmdcCgwonb65DBfdEJt7zyE4rWoYu8vvVy6OQ1A3r0prcKlN7wP3vyoh-YxJM0Z71neBwgqvV6SdWEdLDDOcJRV0T8HOM_tnlekgEzIk-tLrNakZZjyFHnMSDUpyN9HXxuhLi8MqMXP1XU8I-uIep9-DOJnlzvdo4Z58T2lp5hZq-bupNgmYmMzngJ5daysKd-WwAyteb3IYLw_TR6EmSt_alW1S8DpZvUOLSheKwH55SLWKqPsFdX148QziVasYRwqoIsmgbw1zjRxWiSQFLusfZSveSDJGMQtaIDBWaZ4Um2"
+                    />
                     <div
                         style={{
                             width: '45%',
