@@ -1,17 +1,14 @@
 @font-face {
   font-family: "맨발의청춘B";
-  src: local("footB"),
-    url("./fonts/footB.ttf") format("truetype");
+  src: local("footB"), url("./fonts/footB.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "맨발의청춘R";
-  src: local("footR"),
-    url("./fonts/footR.ttf") format("truetype");
+  src: local("footR"), url("./fonts/footR.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "맨발의청춘L";
-  src: local("footL"),
-    url("./fonts/footL.ttf") format("truetype");
+  src: local("footL"), url("./fonts/footL.ttf") format("truetype");
 }
