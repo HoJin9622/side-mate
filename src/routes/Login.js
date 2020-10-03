@@ -1,6 +1,15 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { login } from "../modules/auth";
+import { useDispatch } from "react-redux";
+import {
+  Container,
+  Form,
+  InputContainer,
+  Input,
+  Button,
+  LoginLabel,
+  TextLabel,
+} from "../components/Auth/Auth";
 
 function Login() {
   const dispatch = useDispatch();
@@ -14,21 +23,31 @@ function Login() {
   };
 
   return (
-    <div>
-      <div>아이디</div>
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.currentTarget.value)}
-      />
-      <div>패스워드</div>
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.currentTarget.value)}
-      />
-      <button onClick={onSubmit}>로그인</button>
-    </div>
+    <Container>
+      <Form>
+        <InputContainer>
+          <TextLabel>아이디</TextLabel>
+          <Input
+            type="text"
+            value={username}
+            placeholder="아이디"
+            onChange={(e) => setUsername(e.currentTarget.value)}
+          />
+        </InputContainer>
+        <InputContainer>
+          <TextLabel>패스워드</TextLabel>
+          <Input
+            type="password"
+            value={password}
+            placeholder="패스워드"
+            onChange={(e) => setPassword(e.currentTarget.value)}
+          />
+        </InputContainer>
+        <Button onClick={onSubmit}>
+          <LoginLabel>로그인</LoginLabel>
+        </Button>
+      </Form>
+    </Container>
   );
 }
 

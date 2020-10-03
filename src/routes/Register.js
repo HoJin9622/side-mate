@@ -1,8 +1,17 @@
 import React, { useState } from "react";
+import utils from "../utils";
 import { useDispatch } from "react-redux";
 import { register } from "../modules/auth";
-import utils from "../utils";
 import { createMessage } from "../modules/messages";
+import {
+  Container,
+  Form,
+  InputContainer,
+  Input,
+  Button,
+  LoginLabel,
+  TextLabel,
+} from "../components/Auth/Auth";
 
 function Register() {
   const dispatch = useDispatch();
@@ -52,27 +61,37 @@ function Register() {
   };
 
   return (
-    <div>
-      <div>아이디</div>
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.currentTarget.value)}
-      />
-      <div>닉네임</div>
-      <input
-        type="text"
-        value={nickname}
-        onChange={(e) => setNickname(e.currentTarget.value)}
-      />
-      <div>패스워드</div>
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.currentTarget.value)}
-      />
-      <button onClick={onSubmit}>회원가입</button>
-    </div>
+    <Container>
+      <Form>
+        <InputContainer>
+          <TextLabel>아이디</TextLabel>
+          <Input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.currentTarget.value)}
+          />
+        </InputContainer>
+        <InputContainer>
+          <TextLabel>닉네임</TextLabel>
+          <Input
+            type="text"
+            value={nickname}
+            onChange={(e) => setNickname(e.currentTarget.value)}
+          />
+        </InputContainer>
+        <InputContainer>
+          <TextLabel>패스워드</TextLabel>
+          <Input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.currentTarget.value)}
+          />
+        </InputContainer>
+        <Button onClick={onSubmit}>
+          <LoginLabel>회원가입</LoginLabel>
+        </Button>
+      </Form>
+    </Container>
   );
 }
 
