@@ -5,8 +5,6 @@ import Post from './Post';
 const Container = styled.div`
     width: 100%;
     padding-top: 2.5%;
-    font-style: normal;
-    font-weight: normal;
 `;
 const LastFont = styled.div`
     font-size: 26px;

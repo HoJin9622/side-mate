@@ -1,16 +1,16 @@
-import React from "react";
-import "../styles/index.css";
-import reset from "styled-reset";
-import { createGlobalStyle } from "styled-components";
-import { Route, Switch } from "react-router-dom";
+import React from 'react';
+import '../styles/index.css';
+import reset from 'styled-reset';
+import { createGlobalStyle } from 'styled-components';
+import { Route, Switch } from 'react-router-dom';
 
-import Home from "../routes/Home";
-import Board from "../routes/Board";
-import Login from "../routes/Login";
-import NavBar from "./NavBar/NavBar";
-import Mypage from "../routes/Mypage";
-import Register from "../routes/Register";
-import { Alert } from "../components/Alert/Alert";
+import Home from '../routes/Home';
+import Board from '../routes/Board';
+import Login from '../routes/Login';
+import NavBar from './NavBar/NavBar';
+import Mypage from '../routes/Mypage';
+import Register from '../routes/Register';
+import { Alert } from '../components/Alert/Alert';
 
 const GlobalStyle = createGlobalStyle`
     ${reset}
@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }
     body {
-        font-family: 맨발의청춘R !important;
+        // font-family: 맨발의청춘L !important;
         background-color: #eaedf2;
     }
     a {
@@ -32,20 +32,20 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-  return (
-    <>
-      <GlobalStyle />
-      <NavBar />
-      <Alert />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/board" component={Board} />
-        <Route exact path="/mypage" component={Mypage} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-      </Switch>
-    </>
-  );
+    return (
+        <>
+            <GlobalStyle />
+            <NavBar />
+            <Alert />
+            <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/board" component={Board} />
+                <Route exact path="/mypage" component={Mypage} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/register" component={Register} />
+            </Switch>
+        </>
+    );
 }
 
 export default App;
