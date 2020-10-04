@@ -43,24 +43,28 @@ export const Content = styled.div`
 `;
 
 function MainBoard() {
-  const [posts, setPosts] = useState("");
+  const [posts, setPosts] = useState([]);
+
   useEffect(() => {
-    api.get("/posts/").then((res, err) => {
-      if (res.statusText === "OK") setPosts(res.data.results);
-      else console.log(err);
-    });
+    api
+      .get("/posts/")
+      .then((res) => {
+        setPosts(res.data.results);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
+
   return (
     <Container>
       <Content>
         <LastFont>Last new</LastFont>
-        {posts && (
-          <GridContainer>
-            {posts.map((post) => (
-              <Post post={post} key={post.id} />
-            ))}
-          </GridContainer>
-        )}
+        <GridContainer>
+          {posts.map((post) => (
+            <Post post={post} key={post.id} />
+          ))}
+        </GridContainer>
       </Content>
     </Container>
   );
