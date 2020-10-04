@@ -10,7 +10,7 @@ const Container = styled.div`
   padding: 3%;
 `;
 
-function Post({ test }) {
+function Post({ post }) {
   return (
     <Container>
       <div
@@ -46,7 +46,7 @@ function Post({ test }) {
                 fontWeight: "bold",
               }}
             >
-              박현철
+              {post.user.nickname}
             </p>
           </div>
         </div>
@@ -55,6 +55,9 @@ function Post({ test }) {
           style={{
             paddingTop: 32,
             height: "70%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
           }}
         >
           <p
@@ -63,17 +66,20 @@ function Post({ test }) {
               color: "#706d6d",
             }}
           >
-            저희는 리액트를 사용하여 웹을 구상하며 만들 계획입니다
+            {post.content.length > 34
+              ? post.content?.slice(0, 34) + "..."
+              : post.content}
           </p>
+
           <p
             style={{
               fontSize: 23,
-              marginTop: 32,
+              marginBottom: 30,
               fontWeight: "500",
               color: "#3881c5",
             }}
           >
-            구인중
+            {post.status}
           </p>
         </div>
 
@@ -85,7 +91,9 @@ function Post({ test }) {
             color: "#706d6d",
           }}
         >
-          <p>모집인원 4명 / 부산</p>
+          <p>
+            모집인원 {post.hire_limit} 명 / {post.region.city_name}
+          </p>
           <BookmarkIcon />
         </div>
       </div>
