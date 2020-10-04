@@ -169,8 +169,8 @@ function MainBoard() {
       <Content>
         <LastFont>Last new</LastFont>
         <GridContainer>
-          {test.map((information) => (
-            <Post test={information} />
+          {test.map((information, index) => (
+            <Post key={index} test={information} />
           ))}
         </GridContainer>
       </Content>
