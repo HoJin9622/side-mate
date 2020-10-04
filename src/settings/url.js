@@ -1,5 +1,5 @@
 let url = "http://localhost";
-url = "http://www.side-mate.com";
+
 if (process.env.NODE_ENV === "production") {
   url = "http://www.side-mate.com";
 }

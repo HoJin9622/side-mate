@@ -21,7 +21,6 @@ export const loadUser = () => (dispatch) => {
   api
     .get("/me/profile/", config)
     .then((res) => {
-      console.log(res.data);
       dispatch({ type: USER_LOADED, payload: res.data });
     })
     .catch((err) => {

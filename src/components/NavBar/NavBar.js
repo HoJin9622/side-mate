@@ -40,9 +40,10 @@ const Content = styled.div`
   }
 `;
 
-const Title = styled(Link)`
+const NavLabel = styled(Link)`
   font-size: 1.125rem;
   color: #282b31;
+  line-height: 21px;
 
   @media only screen and (max-width: 768px) {
     font-size: 1rem;
@@ -71,6 +72,20 @@ const DrawerIcon = styled(BsJustify)`
   }
 `;
 
+const LogoutButton = styled.button`
+  font-size: 1.125rem;
+  color: #282b31;
+  border: none;
+  background-color: #ffffff;
+  padding: 0;
+  cursor: pointer;
+  outline: 0;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 1rem;
+  }
+`;
+
 function NavBar() {
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -82,14 +97,14 @@ function NavBar() {
   return (
     <Container>
       <Content>
-        <Title to="/">사이드메이트</Title>
+        <NavLabel to="/">사이드메이트</NavLabel>
         <RightContainer>
-          <Title to="/board">메이트 찾기</Title>
-          <Title to="/board">메이트 모집</Title>
+          <NavLabel to="/board">메이트 찾기</NavLabel>
+          <NavLabel to="/board">메이트 모집</NavLabel>
           {isAuthenticated ? (
-            <button onClick={onLogout}>로그아웃</button>
+            <LogoutButton onClick={onLogout}>로그아웃</LogoutButton>
           ) : (
-            <Title to="/login">로그인</Title>
+            <NavLabel to="/login">로그인</NavLabel>
           )}
         </RightContainer>
         <DrawerIcon />
