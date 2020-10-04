@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Post from "./Post";
+import api from "../../../settings/api";
 
-const Container = styled.div`
+export const Container = styled.div`
   width: 100%;
   padding-top: 2.5%;
 `;
@@ -13,13 +14,13 @@ const LastFont = styled.div`
   margin-bottom: 25px;
 `;
 
-const GridContainer = styled.div`
+export const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(345px, 1fr));
   grid-gap: 1rem;
 `;
 
-const Content = styled.div`
+export const Content = styled.div`
   max-width: 1440px;
   margin: auto;
   justify-content: space-between;
@@ -42,137 +43,24 @@ const Content = styled.div`
 `;
 
 function MainBoard() {
-  const test = [
-    {
-      title: "나랑게임만들사람!!!!!!", //제목
-      content: "저랑같이만드실분있나요?", //상세내용
-      stack: "figma, 코틀린", //기술
-      date: "2020-13-41~2022-11-11", //기간
-    },
-    {
-      title: "나랑웹 만들사람!!!!!!", //제목
-      content: "저랑같이만드실분있나요?", //상세내용
-      stack: "css ,html 자바스크립트", //기술
-      date: "2020-13-41~2022-11-11", //기간
-    },
-    {
-      title: "나랑 건담 만들사람!!!!!!", //제목
-      content: "저랑같이만드실분있나요?", //상세내용
-      stack: "css ,html, react", //기술
-      date: "2020-13-41~2022-11-11", //기간
-    },
-    {
-      title: "나랑 눈사람 만들사람!!!!!!", //제목
-      content: "저랑같이만드실분있나요?", //상세내용
-      stack: "엘사, 안나", //기술
-      date: "2020-13-41~2022-11-11", //기간
-    },
-    {
-      title: "나랑 눈사람 만들사람!!!!!!", //제목
-      content: "저랑같이만드실분있나요?", //상세내용
-      stack: "엘사, 안나", //기술
-      date: "2020-13-41~2022-11-11", //기간
-    },
-    {
-      title: "나랑 눈사람 만들사람!!!!!!", //제목
-      content: "저랑같이만드실분있나요?", //상세내용
-      stack: "엘사, 안나", //기술
-      date: "2020-13-41~2022-11-11", //기간
-    },
-    {
-      title: "나랑 눈사람 만들사람!!!!!!", //제목
-      content: "저랑같이만드실분있나요?", //상세내용
-      stack: "엘사, 안나", //기술
-      date: "2020-13-41~2022-11-11", //기간
-    },
-    {
-      title: "나랑 눈사람 만들사람!!!!!!", //제목
-      content: "저랑같이만드실분있나요?", //상세내용
-      stack: "엘사, 안나", //기술
-      date: "2020-13-41~2022-11-11", //기간
-    },
-    {
-      title: "나랑 눈사람 만들사람!!!!!!", //제목
-      content: "저랑같이만드실분있나요?", //상세내용
-      stack: "엘사, 안나", //기술
-      date: "2020-13-41~2022-11-11", //기간
-    },
-    {
-      title: "나랑 눈사람 만들사람!!!!!!", //제목
-      content: "저랑같이만드실분있나요?", //상세내용
-      stack: "엘사, 안나", //기술
-      date: "2020-13-41~2022-11-11", //기간
-    },
-    {
-      title: "나랑 눈사람 만들사람!!!!!!", //제목
-      content: "저랑같이만드실분있나요?", //상세내용
-      stack: "엘사, 안나", //기술
-      date: "2020-13-41~2022-11-11", //기간
-    },
-    {
-      title: "나랑 눈사람 만들사람!!!!!!", //제목
-      content: "저랑같이만드실분있나요?", //상세내용
-      stack: "엘사, 안나", //기술
-      date: "2020-13-41~2022-11-11", //기간
-    },
-    {
-      title: "나랑 눈사람 만들사람!!!!!!", //제목
-      content: "저랑같이만드실분있나요?", //상세내용
-      stack: "엘사, 안나", //기술
-      date: "2020-13-41~2022-11-11", //기간
-    },
-    {
-      title: "나랑 눈사람 만들사람!!!!!!", //제목
-      content: "저랑같이만드실분있나요?", //상세내용
-      stack: "엘사, 안나", //기술
-      date: "2020-13-41~2022-11-11", //기간
-    },
-    {
-      title: "나랑 눈사람 만들사람!!!!!!", //제목
-      content: "저랑같이만드실분있나요?", //상세내용
-      stack: "엘사, 안나", //기술
-      date: "2020-13-41~2022-11-11", //기간
-    },
-    {
-      title: "나랑 눈사람 만들사람!!!!!!", //제목
-      content: "저랑같이만드실분있나요?", //상세내용
-      stack: "엘사, 안나", //기술
-      date: "2020-13-41~2022-11-11", //기간
-    },
-    {
-      title: "나랑 눈사람 만들사람!!!!!!", //제목
-      content: "저랑같이만드실분있나요?", //상세내용
-      stack: "엘사, 안나", //기술
-      date: "2020-13-41~2022-11-11", //기간
-    },
-    {
-      title: "나랑 눈사람 만들사람!!!!!!", //제목
-      content: "저랑같이만드실분있나요?", //상세내용
-      stack: "엘사, 안나", //기술
-      date: "2020-13-41~2022-11-11", //기간
-    },
-    {
-      title: "나랑 눈사람 만들사람!!!!!!", //제목
-      content: "저랑같이만드실분있나요?", //상세내용
-      stack: "엘사, 안나", //기술
-      date: "2020-13-41~2022-11-11", //기간
-    },
-    {
-      title: "나랑 눈사람 만들사람!!!!!!", //제목
-      content: "저랑같이만드실분있나요?", //상세내용
-      stack: "엘사, 안나", //기술
-      date: "2020-13-41~2022-11-11", //기간
-    },
-  ];
+  const [posts, setPosts] = useState("");
+  useEffect(() => {
+    api.get("/posts/").then((res, err) => {
+      if (res.statusText === "OK") setPosts(res.data.results);
+      else console.log(err);
+    });
+  }, []);
   return (
     <Container>
       <Content>
         <LastFont>Last new</LastFont>
-        <GridContainer>
-          {test.map((information, index) => (
-            <Post key={index} test={information} />
-          ))}
-        </GridContainer>
+        {posts && (
+          <GridContainer>
+            {posts.map((post) => (
+              <Post post={post} key={post.id} />
+            ))}
+          </GridContainer>
+        )}
       </Content>
     </Container>
   );
