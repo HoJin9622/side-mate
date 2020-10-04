@@ -42,8 +42,8 @@ export const login = (username, password) => (dispatch) => {
       history.push("/");
     })
     .catch((err) => {
-      console.log(err.response);
-      dispatch(returnErrors(err.response.data, err.response.status));
+      err.response?.data &&
+        dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({ type: LOGIN_FAIL });
     });
 };
@@ -57,7 +57,8 @@ export const logout = () => (dispatch) => {
       history.push("/");
     })
     .catch((err) => {
-      dispatch(returnErrors(err.response.data, err.response.status));
+      err.response?.data &&
+        dispatch(returnErrors(err.response.data, err.response.status));
     });
 };
 
@@ -72,7 +73,6 @@ export const register = ({ username, password, nickname }) => (dispatch) => {
       history.push("/");
     })
     .catch((err) => {
-      console.log(err.response);
       err.response?.data &&
         dispatch(returnErrors(err.response.data, err.response.status));
     });
