@@ -6,6 +6,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../modules/auth";
 
 const Container = styled.header`
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   width: 100%;
   height: 5rem;
   background-color: #ffffff;
