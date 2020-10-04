@@ -34,6 +34,8 @@ export const Button = styled.button`
   border: none;
   background-color: #1565d8;
   border-radius: 6px;
+  margin-bottom: 24px;
+  cursor: pointer;
 `;
 
 export const LoginLabel = styled.span`

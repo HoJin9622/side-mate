@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { login } from "../modules/auth";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   Container,
   Form,
@@ -12,6 +13,7 @@ import {
 } from "../components/Auth/Auth";
 
 function Login() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -45,6 +47,9 @@ function Login() {
         </InputContainer>
         <Button onClick={onSubmit}>
           <LoginLabel>로그인</LoginLabel>
+        </Button>
+        <Button onClick={() => history.push("/register")}>
+          <LoginLabel>회원가입</LoginLabel>
         </Button>
       </Form>
     </Container>
