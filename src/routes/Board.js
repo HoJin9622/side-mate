@@ -32,28 +32,25 @@ function Board(props) {
       });
   }, [pageNumber]);
   return (
-    <>
-      <Container>
-        <Content>
-          <GridContainer>
-            {posts.map((post) => (
-              <Post post={post} key={post.id} />
-            ))}
-          </GridContainer>
-        </Content>
-      </Container>
-
-      <Pagination
-        className={classes.root}
-        count={2}
-        defaultPage={1}
-        page={parseInt(pageNumber)}
-        boundaryCount={2}
-        onChange={(e, value) => {
-          setPageNumber(value);
-        }}
-      />
-    </>
+    <Container>
+      <Content>
+        <GridContainer>
+          {posts.map((post) => (
+            <Post post={post} key={post.id} />
+          ))}
+        </GridContainer>
+        <Pagination
+          className={classes.root}
+          count={2}
+          defaultPage={1}
+          page={parseInt(pageNumber)}
+          boundaryCount={2}
+          onChange={(e, value) => {
+            setPageNumber(value);
+          }}
+        />
+      </Content>
+    </Container>
   );
 }
 
