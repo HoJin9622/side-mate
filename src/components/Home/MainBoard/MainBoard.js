@@ -43,13 +43,15 @@ export const Content = styled.div`
 `;
 
 function MainBoard() {
+  let params = { page_size: 4 };
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     api
-      .get("/posts/")
+      .get("/posts/?", { params })
       .then((res) => {
         setPosts(res.data.results);
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
