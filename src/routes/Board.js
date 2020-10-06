@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Board(props) {
   const classes = useStyles();
-  const [pageNumber, setPageNumber] = useState(2);
+  const [pageNumber, setPageNumber] = useState(1);
   let params = { page: pageNumber };
   const [posts, setPosts] = useState([]);
   const [maxpage, setMaxpage] = useState(1); //Pagnation 길이

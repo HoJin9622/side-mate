@@ -100,7 +100,7 @@ function NavBar() {
         <NavLabel to="/">사이드메이트</NavLabel>
         <RightContainer>
           <NavLabel to="/board">메이트 찾기</NavLabel>
-          <NavLabel to="/board">메이트 모집</NavLabel>
+          <NavLabel to="/Upload">메이트 모집</NavLabel>
           {isAuthenticated ? (
             <LogoutButton onClick={onLogout}>로그아웃</LogoutButton>
           ) : (
