@@ -37,7 +37,11 @@ export const login = (username, password) => (dispatch) => {
   api
     .post("users/sign-in/", body, config)
     .then((res) => {
-      dispatch(loadUser());
+      // dispatch(loadUser());
+
+      console.log('login res',res);
+      dispatch({ type: USER_LOADED, payload: res.data });
+
       dispatch(createMessage({ login: "로그인 완료" }));
       history.push("/");
     })
