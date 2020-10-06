@@ -26,23 +26,23 @@ const PostInfo = styled.div`
 `;
 
 const PopularIntro = styled.div`
-  font-size: 26px;
+  font-size: 1.625rem;
   line-height: 30px;
   margin-bottom: 2.5%;
 `;
 
 const Title = styled.p`
-  font-size: 34px;
+  font-size: 2.125rem;
   line-height: 40px;
 `;
 
 const Technology = styled.p`
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 20px;
 `;
 
 const DateFont = styled.p`
-  font-size: 14px;
+  font-size: 0.875rem;
   line-height: 20px;
 `;
 

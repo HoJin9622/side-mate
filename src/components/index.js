@@ -11,7 +11,7 @@ import NavBar from "./NavBar/NavBar";
 import Mypage from "../routes/Mypage";
 import Register from "../routes/Register";
 import { Alert } from "../components/Alert/Alert";
-
+import Upload from "../routes/Upload";
 const GlobalStyle = createGlobalStyle`
     ${reset}
     * {
@@ -38,6 +38,7 @@ function App() {
       <NavBar />
       <Alert />
       <Switch>
+        <Route exact path="/Upload" component={Upload} />
         <Route exact path="/" component={Home} />
         <Route exact path="/board" component={Board} />
         <Route exact path="/mypage" component={Mypage} />

@@ -53,7 +53,8 @@ function Register() {
     return true;
   };
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
     if (!isFormValid()) {
       return;
     }
