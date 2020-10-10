@@ -4,7 +4,7 @@ import { returnErrors } from "./errors";
 import { history } from "../index";
 
 const USER_LOADING = "user/USER_LOADING";
-const USER_LOADED = "user/USER_LOADED";
+const USER_LOGIN = "user/USER_LOGIN";
 const AUTH_ERROR = "user/AUTH_ERROR";
 const LOGIN_FAIL = "user/LOGIN_FAIL";
 const LOGOUT_SUCCESS = "user/LOGOUT_SUCCESS";
@@ -15,32 +15,13 @@ const config = {
   },
 };
 
-export const loadUser = () => (dispatch) => {
-  dispatch({ type: USER_LOADING });
-
-  api
-    .get("/me/profile/", config)
-    .then((res) => {
-      dispatch({ type: USER_LOADED, payload: res.data });
-    })
-    .catch((err) => {
-      err.response?.data &&
-        dispatch(returnErrors(err.response.data, err.response.status));
-      dispatch({ type: AUTH_ERROR });
-    });
-};
-
 export const login = (username, password) => (dispatch) => {
   const body = JSON.stringify({ username, password });
 
   api
     .post("users/sign-in/", body, config)
     .then((res) => {
-      // dispatch(loadUser());
-
-      console.log("login res", res);
-      dispatch({ type: USER_LOADED, payload: res.data });
-
+      dispatch({ type: USER_LOGIN, payload: res.data });
       dispatch(createMessage({ login: "로그인 완료" }));
       history.push("/");
     })
@@ -71,9 +52,9 @@ export const register = ({ username, password, nickname }) => (dispatch) => {
   api
     .post("users/sign-up/", body, config)
     .then((res) => {
+      console.log(res);
       dispatch(createMessage({ register: "회원가입 완료" }));
-      dispatch(loadUser());
-      history.push("/");
+      history.push("/login");
     })
     .catch((err) => {
       err.response?.data &&
@@ -95,7 +76,7 @@ export default function (state = initialState, action) {
         ...state,
         isLoading: true,
       };
-    case USER_LOADED:
+    case USER_LOGIN:
       return {
         ...state,
         isAuthenticated: true,
