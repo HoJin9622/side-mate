@@ -38,7 +38,7 @@ export const login = (username, password) => (dispatch) => {
     .then((res) => {
       // dispatch(loadUser());
 
-      console.log('login res',res);
+      console.log("login res", res);
       dispatch({ type: USER_LOADED, payload: res.data });
 
       dispatch(createMessage({ login: "로그인 완료" }));
