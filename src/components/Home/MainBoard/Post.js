@@ -93,7 +93,7 @@ function Post({ post }) {
           }}
         >
           <p>
-            모집인원 {post.hire_limit} 명 / {post.city.name}
+            모집인원 {post.hire_limit} 명 / {post.city}
           </p>
           <BookmarkIcon />
         </div>
