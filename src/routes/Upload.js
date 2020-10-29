@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import api from "../settings/api";
+import { history } from "../index";
+
+
 function Upload(props) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -29,6 +32,7 @@ function Upload(props) {
       .post("posts/", body, config)
       .then((res) => {
         console.log("success", res);
+        if(res.statusText==='Created'){alert('완료되었습니다.'); history.replace('/')}
       })
       .catch((err) => {
         console.log(err.response);
@@ -37,7 +41,7 @@ function Upload(props) {
   };
   return (
     <div>
-      <p>타이틀</p>
+      <p>제목</p>
       <input
         value={title}
         onChange={(e) => {
@@ -51,7 +55,7 @@ function Upload(props) {
           setContent(e.currentTarget.value);
         }}
       />
-      <p>시작시간</p>
+      <p>시작일</p>
       <input
         type="date"
         value={start_time}
@@ -59,7 +63,7 @@ function Upload(props) {
           setStart_time(e.currentTarget.value);
         }}
       />
-      <p>종료시간</p>
+      <p>예상 종료일</p>
       <input
         type="date"
         value={end_time}
@@ -67,14 +71,14 @@ function Upload(props) {
           setEnd_time(e.currentTarget.value);
         }}
       />
-      <p>도시(지금1 또는 2로)</p>
+      <p>도시 / ex) 부산</p>
       <input
         value={city}
         onChange={(e) => {
           setCity(e.currentTarget.value);
         }}
       />
-      <p>hire_limit</p>
+      <p>모집인원</p>
       <input
         value={hireNumber}
         onChange={(e) => {

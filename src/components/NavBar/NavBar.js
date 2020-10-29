@@ -97,7 +97,7 @@ function NavBar() {
   return (
     <Container>
       <Content>
-        <NavLabel to="/">사이드메이트</NavLabel>
+        <NavLabel to="/">Side Mate</NavLabel>
         <RightContainer>
           <NavLabel to="/board">메이트 찾기</NavLabel>
           <NavLabel to="/Upload">메이트 모집</NavLabel>

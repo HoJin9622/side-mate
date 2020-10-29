@@ -16,6 +16,7 @@ function Post({ post }) {
       <div
         style={{
           height: "100%",
+            paddingBottom: 16
         }}
       >
         <div
@@ -96,6 +97,10 @@ function Post({ post }) {
           </p>
           <BookmarkIcon />
         </div>
+
+          <div style={{color: "#706d6d", paddingTop: 4}}>
+              {post.start_time} ~ {post.end_time}
+          </div>
       </div>
     </Container>
   );

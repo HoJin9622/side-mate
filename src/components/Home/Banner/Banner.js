@@ -73,7 +73,7 @@ function Banner(props) {
     <Container>
       <Content>
         {/*Most popular */}
-        <PopularIntro>Most popular</PopularIntro>
+        <PopularIntro>Intro</PopularIntro>
         {/*박스 컨테이너*/}
         <Postbox>
           <img
@@ -93,7 +93,7 @@ function Banner(props) {
             }}
           >
             <PostInfo>
-              <Title>리액트 만들사람있나요 행님들</Title>
+              <Title>리액트로 같이 만들사람있나요 행님들</Title>
               <Technology>기술 : 리액트, 백엔드 : 미정</Technology>
               <DateFont>기간 : 2020-12-23 ~ 2022-11-11</DateFont>
             </PostInfo>

@@ -61,7 +61,7 @@ function MainBoard() {
   return (
     <Container>
       <Content>
-        <LastFont>Last new</LastFont>
+        <LastFont>Lately Posts</LastFont>
         <GridContainer>
           {posts.map((post) => (
             <Post post={post} key={post.id} />

@@ -23,7 +23,7 @@ export const login = (username, password) => (dispatch) => {
     .then((res) => {
       dispatch({ type: USER_LOGIN, payload: res.data });
       dispatch(createMessage({ login: "로그인 완료" }));
-      history.push("/");
+      history.replace("/");
     })
     .catch((err) => {
       err.response?.data &&
@@ -38,7 +38,7 @@ export const logout = () => (dispatch) => {
     .then((res) => {
       dispatch(createMessage({ logout: "로그아웃 완료" }));
       dispatch({ type: LOGOUT_SUCCESS });
-      history.push("/");
+      history.replace("/");
     })
     .catch((err) => {
       err.response?.data &&
