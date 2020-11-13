@@ -55,7 +55,7 @@ const RightContainer = styled.div`
   max-width: 400px;
   display: flex;
   justify-content: space-between;
-
+  align-items: center;
   @media only screen and (max-width: 768px) {
     display: none;
   }
@@ -72,7 +72,7 @@ const DrawerIcon = styled(BsJustify)`
   }
 `;
 
-const LogoutButton = styled.button`
+const LogoutButton = styled.p`
   font-size: 1.125rem;
   color: #282b31;
   border: none;
@@ -80,9 +80,11 @@ const LogoutButton = styled.button`
   padding: 0;
   cursor: pointer;
   outline: 0;
-
   @media only screen and (max-width: 768px) {
     font-size: 1rem;
+  }
+  &: hover {
+    color: red;
   }
 `;
 
