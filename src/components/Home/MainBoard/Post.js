@@ -15,7 +15,7 @@ const Container = styled.div`
 function Post({ post }) {
   const history = useHistory();
   return (
-    <Container onClick={() => history.push(`/post/${post.id}`)}>
+    <Container onClick={() => history.push(`/Detailpage/${post.id}`)}>
       <div
         style={{
           height: "100%",
