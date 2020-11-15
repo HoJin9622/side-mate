@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Post from "./Post";
 import api from "../../../settings/api";
-
 export const Container = styled.div`
   width: 100%;
   padding-top: 2.5%;
