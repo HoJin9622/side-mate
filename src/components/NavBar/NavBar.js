@@ -99,7 +99,7 @@ function NavBar() {
   return (
     <Container>
       <Content>
-        <NavLabel to="/">Side Mate</NavLabel>
+        <NavLabel to="/" style={{fontSize: '1.5rem'}}>Side Mate</NavLabel>
         <RightContainer>
           <NavLabel to="/board">메이트 찾기</NavLabel>
           <NavLabel to="/Upload">메이트 모집</NavLabel>
