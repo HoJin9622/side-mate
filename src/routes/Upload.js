@@ -164,7 +164,7 @@ function Upload(props) {
                 setEnd_time(e.currentTarget.value);
               }}
             />
-            <Title>도시 </Title>
+            <Title>장소</Title>
             <Input
               placeholder="e.g) 부산"
               className={classes.Input}

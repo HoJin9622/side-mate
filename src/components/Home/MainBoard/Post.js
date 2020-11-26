@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
+import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import { useHistory } from "react-router-dom";
 
 const Container = styled.div`
@@ -8,7 +9,7 @@ const Container = styled.div`
   height: 18rem;
   background: #ffffff;
   border-radius: 15px;
-  padding: 3%;
+  padding: 3% 3% 5%;
   cursor: pointer;
 `;
 
@@ -98,7 +99,11 @@ function Post({ post }) {
           <p>
             모집인원 {post.hire_limit} 명 / {post.city}
           </p>
-          <BookmarkIcon />
+            {post.has_favorite ?
+                <button style={{border: 'none'}}>
+                    <BookmarkIcon />
+                </button> :
+                <button><BookmarkBorderIcon/></button>}
         </div>
 
         <div style={{ color: "#706d6d", paddingTop: 4 }}>
