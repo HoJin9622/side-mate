@@ -41,7 +41,7 @@ function Board(props) {
       <Content>
         <GridContainer>
           {posts.map((post) => (
-            <Post post={post} key={post.id} />
+            <Post item={post} key={post.id} />
           ))}
         </GridContainer>
         <Pagination

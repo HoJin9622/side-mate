@@ -63,7 +63,7 @@ function MainBoard() {
         <LastFont>Lately Posts</LastFont>
         <GridContainer>
           {posts.map((post) => (
-            <Post post={post} key={post.id} />
+            <Post item={post} key={post.id} />
           ))}
         </GridContainer>
       </Content>
