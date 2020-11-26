@@ -46,8 +46,8 @@ export const logout = () => (dispatch) => {
     });
 };
 
-export const register = ({ username, password, nickname, position }) => (dispatch) => {
-  const body = JSON.stringify({ login_id: username, password, nickname, position });
+export const register = ({ username, password, nickname, position, phoneNumber }) => (dispatch) => {
+  const body = JSON.stringify({ login_id: username, password, nickname, position, phone_number: phoneNumber });
 
   api
     .post("users/sign-up/", body, config)
