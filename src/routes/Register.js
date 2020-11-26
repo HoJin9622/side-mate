@@ -19,9 +19,10 @@ function Register() {
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
   const [position, setPosition] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   const isFormValid = () => {
-    if (username === "" || nickname === "" || password === "") {
+    if (username === "" || nickname === "" || password === "" || position === "" || phoneNumber === "") {
       dispatch(createMessage({ notValidForm: "양식을 모두 입력해주세요!" }));
       return false;
     }
@@ -59,7 +60,7 @@ function Register() {
     if (!isFormValid()) {
       return;
     }
-    dispatch(register({ username, nickname, password, position }));
+    dispatch(register({ username, nickname, password, position, phoneNumber }));
   };
 
   return (
@@ -68,7 +69,7 @@ function Register() {
         <InputContainer>
           <TextLabel>아이디</TextLabel>
           <Input
-              placeholder={'e.g) 100dongwoo'}
+              placeholder={'e.g) dongwoo100'}
             type="text"
             value={username}
             onChange={(e) => setUsername(e.currentTarget.value)}
@@ -93,12 +94,21 @@ function Register() {
           />
         </InputContainer>
         <InputContainer>
-          <TextLabel>(관심)분야</TextLabel>
+          <TextLabel>메인(관심)분야</TextLabel>
           <Input
               placeholder={'e.g) 프론트엔드(React) 개발자'}
-              type="position"
+              type="text"
               value={position}
               onChange={(e) => setPosition(e.currentTarget.value)}
+          />
+        </InputContainer>
+        <InputContainer>
+          <TextLabel>연락처</TextLabel>
+          <Input
+              placeholder={'e.g) 01028627045'}
+              type="number"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.currentTarget.value)}
           />
         </InputContainer>
 
