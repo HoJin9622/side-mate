@@ -73,7 +73,7 @@ function Banner(props) {
     <Container>
       <Content>
         {/*Most popular */}
-        <PopularIntro>Intro</PopularIntro>
+        {/*<PopularIntro>Intro</PopularIntro>*/}
         {/*박스 컨테이너*/}
         <Postbox style={{backgroundColor: 'pink'}}>
           <img
@@ -86,12 +86,12 @@ function Banner(props) {
             src="https://i.pinimg.com/originals/4a/d4/e6/4ad4e67b19d6e4c91877b317aed51f26.jpg"
             alt=""
           />
-    
+
           <div
             style={{
               width: "45%",
               padding: "2% 2% 2% 0",
-         
+
             }}
           >
             <PostInfo style={{backgroundColor: 'skyblue'}}>

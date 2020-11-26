@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
 import TextField from "@material-ui/core/TextField";
+import { useDispatch, useSelector } from "react-redux";
 
 const Container = styled.div`
   width: 100%;
@@ -39,6 +40,7 @@ const Content = styled.div`
 `;
 const ContentBorder = styled.div`
   border: 1px solid #adadad;
+  background-color: #ffffff;
   border-radius: 15px;
   padding: 1% 2%;
 `;
@@ -91,6 +93,8 @@ function Upload(props) {
   const [end_time, setEnd_time] = useState("");
   const [city, setCity] = useState("");
   const [hireNumber, setHireNumber] = useState();
+  // const dispatch = useDispatch();
+  const user = useSelector(state=>state.auth.user);
 
   const params = {
     title: title,
@@ -107,6 +111,7 @@ function Upload(props) {
   };
   const onHandleSubmit = (e) => {
     e.preventDefault();
+    if(!user){alert('업로드는 로그인 후에 가능합니다!'); return}
     const body = JSON.stringify(params);
 
     api
@@ -128,13 +133,13 @@ function Upload(props) {
       <Content>
         <ContentBorder>
           <TopContainer>
-            <Maintitle> 새로운 팀원 구하기</Maintitle>
+            <Maintitle>메이트 모집</Maintitle>
           </TopContainer>
           <div style={{ textAlign: "center" }}>
             <Title>제목</Title>
             <Input
               className={classes.Input}
-              placeholder="제목입력..."
+              placeholder="e.g) 리액트 경험자 찾습니다~"
               value={title}
               onChange={(e) => {
                 setTitle(e.currentTarget.value);
@@ -161,7 +166,7 @@ function Upload(props) {
             />
             <Title>도시 </Title>
             <Input
-              placeholder="ex) 부산..."
+              placeholder="e.g) 부산"
               className={classes.Input}
               value={city}
               onChange={(e) => {
@@ -170,7 +175,7 @@ function Upload(props) {
             />
             <Title>모집인원</Title>
             <Input
-              placeholder=" ex) 3 / 숫자만 입력해주세요"
+              placeholder=" e.g) 3 / 숫자만 입력해주세요!"
               className={classes.Input}
               value={hireNumber}
               onChange={(e) => {
@@ -183,7 +188,7 @@ function Upload(props) {
               rowsMax={10}
               rows={4}
               className={classes.TextField}
-              placeholder="ex) ○○○관련 어플 개발할 프론트 구합니다"
+              placeholder="e.g) ○○관련 어플 개발할 프론트 개발자 구합니다!"
               variant="outlined"
               value={content}
               onChange={(e) => {
