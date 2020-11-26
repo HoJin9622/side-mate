@@ -46,16 +46,20 @@ function MainBoard() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    api
-      .get("/posts/?", { params })
-      .then((res) => {
-        setPosts(res.data.results);
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      fetchPosts();
   }, []);
+
+  const fetchPosts = () => {
+    api
+        .get("/posts/?", { params })
+        .then((res) => {
+          setPosts(res.data.results);
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  };
 
   return (
     <Container>
