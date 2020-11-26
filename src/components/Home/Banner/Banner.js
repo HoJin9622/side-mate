@@ -14,7 +14,7 @@ const Postbox = styled.div`
   justify-content: space-between;
   border-radius: 15px;
   padding: 1% 1% 1% 1%;
-  background: #ffffff;
+  background-color: red;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `;
 
@@ -75,7 +75,7 @@ function Banner(props) {
         {/*Most popular */}
         <PopularIntro>Intro</PopularIntro>
         {/*박스 컨테이너*/}
-        <Postbox>
+        <Postbox style={{backgroundColor: 'pink'}}>
           <img
             style={{
               width: "50%",
@@ -86,16 +86,18 @@ function Banner(props) {
             src="https://i.pinimg.com/originals/4a/d4/e6/4ad4e67b19d6e4c91877b317aed51f26.jpg"
             alt=""
           />
+    
           <div
             style={{
               width: "45%",
               padding: "2% 2% 2% 0",
+         
             }}
           >
-            <PostInfo>
-              <Title>리액트로 같이 만들사람있나요 행님들</Title>
+            <PostInfo style={{backgroundColor: 'skyblue'}}>
+              {/* <Title>리액트로 같이 만들사람있나요 행님들</Title>
               <Technology>기술 : 리액트, 백엔드 : 미정</Technology>
-              <DateFont>기간 : 2020-12-23 ~ 2022-11-11</DateFont>
+              <DateFont>기간 : 2020-12-23 ~ 2022-11-11</DateFont> */}
             </PostInfo>
           </div>
         </Postbox>

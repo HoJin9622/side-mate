@@ -12,6 +12,7 @@ import Mypage from "../routes/Mypage";
 import Register from "../routes/Register";
 import { Alert } from "../components/Alert/Alert";
 import Upload from "../routes/Upload";
+import Detailpage from "../routes/Detailpage";
 const GlobalStyle = createGlobalStyle`
     ${reset}
     * {
@@ -44,6 +45,7 @@ function App() {
         <Route exact path="/mypage" component={Mypage} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
+        <Route exact path="/Detailpage/:id" component={Detailpage} />
       </Switch>
     </>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
+import { useHistory } from "react-router-dom";
 
 const Container = styled.div`
   width: 345px;
@@ -8,15 +9,17 @@ const Container = styled.div`
   background: #ffffff;
   border-radius: 15px;
   padding: 3%;
+  cursor: pointer;
 `;
 
 function Post({ post }) {
+  const history = useHistory();
   return (
-    <Container>
+    <Container onClick={() => history.push(`/Detailpage/${post.id}`)}>
       <div
         style={{
           height: "100%",
-            paddingBottom: 16
+          paddingBottom: 16,
         }}
       >
         <div
@@ -98,9 +101,9 @@ function Post({ post }) {
           <BookmarkIcon />
         </div>
 
-          <div style={{color: "#706d6d", paddingTop: 4}}>
-              {post.start_time} ~ {post.end_time}
-          </div>
+        <div style={{ color: "#706d6d", paddingTop: 4 }}>
+          {post.start_time} ~ {post.end_time}
+        </div>
       </div>
     </Container>
   );
