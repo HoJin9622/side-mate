@@ -18,10 +18,11 @@ function Register() {
   const [username, setUsername] = useState("");
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
+  const [position, setPosition] = useState("");
 
   const isFormValid = () => {
     if (username === "" || nickname === "" || password === "") {
-      dispatch(createMessage({ notValidForm: "좋은말로할때 다 채워라" }));
+      dispatch(createMessage({ notValidForm: "양식을 모두 입력해주세요!" }));
       return false;
     }
     if (!utils.isId(username)) {
@@ -58,7 +59,7 @@ function Register() {
     if (!isFormValid()) {
       return;
     }
-    dispatch(register({ username, nickname, password }));
+    dispatch(register({ username, nickname, password, position }));
   };
 
   return (
@@ -67,6 +68,7 @@ function Register() {
         <InputContainer>
           <TextLabel>아이디</TextLabel>
           <Input
+              placeholder={'e.g) 100dongwoo'}
             type="text"
             value={username}
             onChange={(e) => setUsername(e.currentTarget.value)}
@@ -75,6 +77,7 @@ function Register() {
         <InputContainer>
           <TextLabel>닉네임</TextLabel>
           <Input
+              placeholder={'e.g) 피지컬의백동우'}
             type="text"
             value={nickname}
             onChange={(e) => setNickname(e.currentTarget.value)}
@@ -83,11 +86,22 @@ function Register() {
         <InputContainer>
           <TextLabel>패스워드</TextLabel>
           <Input
+              placeholder={'e.g) king_100dongwoo'}
             type="password"
             value={password}
             onChange={(e) => setPassword(e.currentTarget.value)}
           />
         </InputContainer>
+        <InputContainer>
+          <TextLabel>(관심)분야</TextLabel>
+          <Input
+              placeholder={'e.g) 프론트엔드(React) 개발자'}
+              type="position"
+              value={position}
+              onChange={(e) => setPosition(e.currentTarget.value)}
+          />
+        </InputContainer>
+
         <Button onClick={onSubmit}>
           <LoginLabel>회원가입</LoginLabel>
         </Button>

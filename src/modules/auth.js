@@ -16,7 +16,7 @@ const config = {
 };
 
 export const login = (username, password) => (dispatch) => {
-  const body = JSON.stringify({ username, password });
+  const body = JSON.stringify({ login_id: username, password });
 
   api
     .post("users/sign-in/", body, config)
@@ -46,8 +46,8 @@ export const logout = () => (dispatch) => {
     });
 };
 
-export const register = ({ username, password, nickname }) => (dispatch) => {
-  const body = JSON.stringify({ username, password, nickname });
+export const register = ({ username, password, nickname, position }) => (dispatch) => {
+  const body = JSON.stringify({ login_id: username, password, nickname, position });
 
   api
     .post("users/sign-up/", body, config)
