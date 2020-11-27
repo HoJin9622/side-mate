@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Post from "./Post";
 import api from "../../../settings/api";
+
 export const Container = styled.div`
     width: 100%;
     padding-top: 2.5%;
@@ -46,6 +47,10 @@ function MainBoard() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
+        fetchPosts();
+    }, []);
+
+    const fetchPosts = () => {
         api.get("/posts/?", { params })
             .then((res) => {
                 setPosts(res.data.results);
@@ -54,7 +59,7 @@ function MainBoard() {
             .catch((err) => {
                 console.log(err);
             });
-    }, []);
+    };
 
     return (
         <Container>
@@ -69,5 +74,4 @@ function MainBoard() {
         </Container>
     );
 }
-
 export default MainBoard;
