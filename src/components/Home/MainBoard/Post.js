@@ -62,7 +62,7 @@ function Post(props) {
           >
             <img
               alt=""
-              src="https://placeimg.com/60/60/animals"
+              src={`https://picsum.photos/id/${Math.floor(Math.random()*(49))+1}/60/60`}
               style={{
                 borderRadius: "50%",
                 marginRight: 10,

@@ -5,109 +5,105 @@ import api from "../settings/api";
 import FaceIcon from "@material-ui/icons/Face";
 import Review from "../components/Detail/Review";
 import { useSelector } from "react-redux";
+
+
 function Detailpage(props) {
     const id = props.match.params.id; ///URL 에서 가져옴
     const [post, setPost] = useState([]);
     const [reviews, setReviews] = useState([]);
     const [content, setContent] = useState("");
     const { isAuthenticated } = useSelector((state) => state.auth);
-    const user = useSelector((state) => state.auth.user);
-    let params = {
-        content: content,
-        user: user.id,
-    };
+
     useEffect(() => {
-        // fetchPost();
-        // fetchReviews();
+        fetchPost();
+        fetchReviews();
     }, []);
-    const array = [
-        {
-            name: "방구대장 김재훈",
-        },
-        {
-            name: "방구 김재훈",
-        },
-        {
-            name: "대장 김재훈",
-        },
-        {
-            name: "방구훈",
-        },
-        {
-            name: "전설에 52연타 김재훈",
-        },
-        {
-            name: "방구 김재훈",
-        },
-        {
-            name: "방구김재훈",
-        },
-    ];
-    const reviews1 = [
-        {
-            createAt: "2020-02-02",
-            content: "Qweqwe",
-            user: [{ nickname: "123" }],
-        },
-        {
-            createAt: "2020-02-02",
-            content: "Qweqwe",
-            user: [{ nickname: "123" }],
-        },
-        {
-            createAt: "2020-02-02",
-            content: "Qweqwe",
-            user: [{ nickname: "123" }],
-        },
-        {
-            createAt: "2020-02-02",
-            content: "Qweqwe",
-            user: [{ nickname: "123" }],
-        },
-        {
-            createAt: "2020-02-02",
-            content: "Qweqwe",
-            user: [{ nickname: "123" }],
-        },
-        {
-            createAt: "2020-02-02",
-            content: "Qweqwe",
-            user: [{ nickname: "123" }],
-        },
-        {
-            createAt: "2020-02-02",
-            content: "Qweqwe",
-            user: [{ nickname: "123" }],
-        },
-        {
-            createAt: "2020-02-02",
-            content: "Qweqwe",
-            user: [{ nickname: "123" }],
-        },
-        {
-            createAt: "2020-02-02",
-            content: "Qweqwe",
-            user: [{ nickname: "123" }],
-        },
-        {
-            createAt: "2020-02-02",
-            content: "Qweqwe",
-            user: [{ nickname: "123" }],
-        },
-        {
-            createAt: "2020-02-02",
-            content: "Qweqwe",
-            user: [{ nickname: "123" }],
-        },
-        {
-            createAt: "2020-02-02",
-            content: "Qweqwe",
-            user: [{ nickname: "123" }],
-        },
-    ];
+
+    const onSubmitReview = (e) => {
+        let params = {
+            content: content,
+            // user: props.auth.user.id,
+        };
+        e.preventDefault();
+        if (!isAuthenticated) {
+            alert('로그인후 이용 가능합니다');
+            return;
+        }
+        else if (content.length===0) {
+            alert('댓글을 작성해주세요(빈칸 금지)');
+            return;
+        }
+        api.post(`posts/${id}/reviews/`, params).then((res) => {
+            console.log('a',res)
+            if (res.statusText!=='Created') {
+                alert('댓글작성에 실패하였습니다.');
+                return;
+            }
+            console.log(res);
+            fetchReviews();
+            setContent('');
+            alert('댓글작성 완료');
+        });
+    };
+
+    const fetchReviews = () => {
+        api.get(`posts/${id}/reviews/`)
+            .then((res) => {
+                if (res.statusText!=='OK') {
+                    alert('리뷰데이터를 불러오는 데 실패하였습니다.');
+                    return;
+                }
+                setReviews(res.data);
+            })
+            .catch((err) => {
+                console.log('리뷰' + err);
+            });
+    };
+
+    const fetchPost = () => {
+        api.get(`posts/${id}/`)
+            .then((res) => {
+                if (res.statusText!=='OK') {
+                    alert('게시물정보를 불러오는 데 실패하였습니다.');
+                    return;
+                }
+                setPost(res.data);
+            })
+            .catch((err) => {
+                console.log('post' + err);
+            });
+    };
+
+    const onUpdatePost = () => {
+        props.history.push({pathname: '/Uploadpage', state: {post}});
+    };
+
+    const onDeletePost = () => {
+        api.delete(`posts/${id}/`).then((res) => {
+            if (res.statusText!=='OK') {
+                alert('게시물 삭제에 실패하였습니다.');
+                return;
+            }
+            alert('게시물이 삭제되었습니다.');
+            props.history.goBack();
+        });
+    };
+
+
+    // const array = [
+    //     {
+    //         name: "방구대장 김재훈",
+    //     },
+    //     {
+    //         name: "방구 김재훈",
+    //     },
+    //     {
+    //         name: "대장 김재훈",
+    //     },
+    // ];
+
     return (
         <Container>
-            {console.log(user)}
             <Content>
                 <PostBox>
                     <div>
@@ -119,24 +115,25 @@ function Detailpage(props) {
                             }}
                         >
                             <Title>{post.title}</Title>
-                            <p>좋아요 수 : {post.favorite_count}</p>
+                            <div>
+                                <p style={{marginTop: 18}}>모집인원 : {post.hire_limit}</p>
+                                <Postfont style={{fontWeight: 'normal', marginTop: 4}}>
+                                    {/*&nbsp;&nbsp;{" "}*/}
+                                    {String(post.created_at).substr(0, 10)}
+                                </Postfont>
+                            </div>
                         </div>
-                        <PostNameImage
-                            src={
-                                post?.user?.image
-                                    ? post?.user?.image
-                                    : "https://placeimg.com/40/50/anys"
-                            }
-                            alt="avatar"
-                        />
-
-                        <Postfont>
-                            작성자 이름 : {post?.user?.nickname}
-                        </Postfont>
-                        <Postfont>
-                            게시날짜 &nbsp;&nbsp;{" "}
-                            {String(post.created_at).substr(0, 10)}
-                        </Postfont>
+                        <div style={{flexDirection: 'row', display: 'flex', alignItems: 'center', margin: '8px 0px'}}>
+                            <PostNameImage
+                                src={
+                                    post?.user?.image
+                                        ? post?.user?.image
+                                        : `https://picsum.photos/id/${Math.floor(Math.random()*(49))+1}/40/50`
+                                }
+                                alt="avatar"
+                            />
+                            <Postfont style={{fontSize: 24, fontWeight: '500', marginLeft: 16}}>{post?.user?.nickname}</Postfont>
+                        </div>
                         <hr
                             style={{
                                 border: "1px solid black",
@@ -164,29 +161,29 @@ function Detailpage(props) {
                             )}
                         </Information>
                         <Information>
-                            position: {post.user?.position}
+                            메인(관심) 분야: {post.user?.position}
                         </Information>
                     </div>
 
-                    <Subtitle style={{ marginTop: "1rem" }}>
-                        현재 신청인 : {array.length} 명
-                    </Subtitle>
-                    <GridContainer>
-                        {array.map((array) => (
-                            <div>
-                                <FaceIcon
-                                    style={{
-                                        marginRight: "1rem",
-                                        fontSize: 30,
-                                    }}
-                                />
-                                <p>{array.name}</p>
-                            </div>
-                        ))}
-                    </GridContainer>
+                    {/*<Subtitle style={{ marginTop: "1rem" }}>*/}
+                    {/*    현재 신청인 : {array.length} 명*/}
+                    {/*</Subtitle>*/}
+                    {/*<GridContainer>*/}
+                    {/*    {array?.map((array) => (*/}
+                    {/*        <div>*/}
+                    {/*            <FaceIcon*/}
+                    {/*                style={{*/}
+                    {/*                    marginRight: "1rem",*/}
+                    {/*                    fontSize: 30,*/}
+                    {/*                }}*/}
+                    {/*            />*/}
+                    {/*            <p>{array.name}</p>*/}
+                    {/*        </div>*/}
+                    {/*    ))}*/}
+                    {/*</GridContainer>*/}
                     <ReviewContent>
-                        {reviews1.map((reviews, index) => (
-                            <Review reviews={reviews} key={index} />
+                        {reviews?.map((review, index) => (
+                            <Review review={review} key={index} />
                         ))}
                     </ReviewContent>
                     <div
@@ -205,9 +202,11 @@ function Detailpage(props) {
                             placeholder="댓글을 작성해주세요"
                         />
                         <div
+                            onClick={onSubmitReview}
                             style={{
                                 display: "flex",
                                 justifyContent: "flex-end",
+                                marginRight: 4
                             }}
                         >
                             <ReviewSubmitBtn>작 성</ReviewSubmitBtn>
