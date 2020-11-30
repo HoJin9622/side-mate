@@ -53,6 +53,10 @@ function MainBoard() {
     const fetchPosts = () => {
         api.get("/posts/?", { params })
             .then((res) => {
+                if (res.statusText!=='OK') {
+                    alert('게시물정보를 불러오는 데 실패하였습니다.');
+                    return;
+                }
                 setPosts(res.data.results);
                 console.log(res);
             })
@@ -64,7 +68,7 @@ function MainBoard() {
     return (
         <Container>
             <Content>
-                <LastFont>Lately Posts</LastFont>
+                <LastFont style={{marginTop: 16}}>메이트 모집</LastFont>
                 <GridContainer>
                     {posts.map((post) => (
                         <Post item={post} key={post.id} />

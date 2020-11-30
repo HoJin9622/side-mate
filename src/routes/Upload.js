@@ -133,7 +133,7 @@ function Upload(props) {
       <Content>
         <ContentBorder>
           <TopContainer>
-            <Maintitle>메이트 모집</Maintitle>
+            <Maintitle style={{textAlign: 'center', padding: '8px 0px'}}>메이트 모집</Maintitle>
           </TopContainer>
           <div style={{ textAlign: "center" }}>
             <Title>제목</Title>

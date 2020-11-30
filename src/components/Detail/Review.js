@@ -20,7 +20,7 @@ const ReviewConainer = styled.div`
     height: auto;
 `;
 
-function Review({ reviews }) {
+function Review({ review }) {
     return (
         <Container>
             {/*이미지, -이름 -시간*/}
@@ -32,19 +32,18 @@ function Review({ reviews }) {
                     }}
                 >
                     <Avartar
-                        src="https://placeimg.com/40/50/anys"
+                        src={`https://picsum.photos/id/${Math.floor(Math.random()*(49))+1}/40/50`}
                         alt="avartar"
                     />
                     <div>
                         <p>
-                            유저이름: {reviews.user.nickname}
-                            <br />
-                            작성날짜 :
-                            {moment(reviews.createAt).format('YYYY-MM-DD')}
+                            {review.user.nickname}
+                            <br /><br/>
+                            {moment(review.createAt).format('YYYY-MM-DD')}
                         </p>
                     </div>
                 </div>
-                <p>{reviews.content}</p>
+                <p style={{margin: '8px 0px', marginLeft: 16}}>{review.content}</p>
             </ReviewConainer>
         </Container>
     );
