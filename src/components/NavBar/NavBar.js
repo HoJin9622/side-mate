@@ -91,7 +91,7 @@ const LogoutButton = styled.p`
 const SideMenu = styled.p`
     margin-left: 20px;
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 1rem;
     cursor: pointer;
     margin-top: 1.3rem;
     &:hover {
@@ -138,14 +138,14 @@ function NavBar() {
                     <p
                         style={{
                             fontSize: "1.4rem",
-                            padding: "10px 140px 10px 20px ",
+                            padding: "20px 140px 20px 20px ",
                             borderBottom: "solid 1px #e8e8e8",
                         }}
                     >
                         Side-Mate
                     </p>
                     <SideMenu
-                        style={{ marginTop: "2rem" }}
+                        style={{ marginTop: "1rem" }}
                         onClick={() => {
                             setVisible(false);
                             history.push("/");
@@ -174,18 +174,18 @@ function NavBar() {
                             <SideMenu
                                 onClick={() => {
                                     setVisible(false);
-                                    history.push("/login");
-                                }}
-                            >
-                                로그인
-                            </SideMenu>
-                            <SideMenu
-                                onClick={() => {
-                                    setVisible(false);
                                     history.push("/register");
                                 }}
                             >
                                 회원가입
+                            </SideMenu>
+                            <SideMenu
+                                onClick={() => {
+                                    setVisible(false);
+                                    history.push("/login");
+                                }}
+                            >
+                                로그인
                             </SideMenu>
                         </>
                     ) : (
