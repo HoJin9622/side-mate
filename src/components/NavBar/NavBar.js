@@ -169,7 +169,7 @@ function NavBar() {
                     >
                         메이트 모집
                     </SideMenu>
-                    {isAuthenticated ? (
+                    {!isAuthenticated ? (
                         <>
                             <SideMenu
                                 onClick={() => {
